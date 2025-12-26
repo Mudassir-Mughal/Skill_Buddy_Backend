@@ -14,4 +14,10 @@ router.post('/:id/reply', reviewController.replyToReview);
 // Report a review (FE-4)
 router.post('/:id/report', reviewController.reportReview);
 
+// Get all reported reviews (for admin)
+router.get('/reported', reviewController.getReportedReviews);
+
+// Delete a review (for admin)
+router.delete('/:id', reviewController.deleteReview);
+
 module.exports = router;

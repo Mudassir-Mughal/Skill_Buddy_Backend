@@ -54,3 +54,26 @@ exports.reportReview = async (req, res) => {
   }
 };
 
+// Get all reported reviews (for admin)
+exports.getReportedReviews = async (req, res) => {
+  try {
+    // Find reviews with at least one report
+    const reviews = await Review.find({ 'reports.0': { $exists: true } })
+      .populate('studentId', 'Fullname')
+      .populate('reports.reporterId', 'Fullname');
+    res.json(reviews);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Delete a review (for admin)
+exports.deleteReview = async (req, res) => {
+  try {
+    const review = await Review.findByIdAndDelete(req.params.id);
+    if (!review) return res.status(404).json({ error: 'Review not found' });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

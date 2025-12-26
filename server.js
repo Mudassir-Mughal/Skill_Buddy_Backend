@@ -22,6 +22,8 @@ const adminRoutes = require('./routes/adminRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const disputeRoutes = require('./routes/disputeRoutes');
 const walletRoutes = require('./routes/walletRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const allSkillRoutes = require('./routes/allSkillRoutes');
 
 // Use routes
 app.use('/api/users', userRoutes);
@@ -33,6 +35,8 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/disputes', disputeRoutes);
 app.use('/api/wallet', walletRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/allskills', allSkillRoutes);
 
 // Test route
 app.get('/', (req, res) => {
